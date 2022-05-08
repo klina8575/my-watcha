@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import LatestMovieContainer from "../containers/LatestMovieContainer";
 import UpcomingMovieContainer from "../containers/UpcomingMovieContainer";
 import NowPlayingMovieContainer from "../containers/NowPlayingMovieContainer";
+
 // import LatestMovie from "../components/LatestMovie";
 // import UpcomingMovieSection from "../features/movie/upcoming";
 // import NowPlayingSection from "../features/movie/nowPlaying";

@@ -1,7 +1,23 @@
 import React from "react";
+import styled from "styled-components";
 
-const Moviedetail = () => {
-  return <div>moviedetail</div>;
+import DetailMovieContainer from "../containers/DetailMovieContainer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+const Base = styled.div`
+  position: relative;
+  background: #f8f8f8;
+`;
+
+const MovieDetail = () => {
+  return (
+    <Base>
+      <Header />
+      <DetailMovieContainer />
+      <Footer />
+    </Base>
+  );
 };
 
-export default Moviedetail;
+export default MovieDetail;

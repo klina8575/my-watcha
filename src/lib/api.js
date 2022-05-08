@@ -10,7 +10,7 @@ export const getTopRated = () => axiosInstance.get("/movie/top_rated");
 
 export const getPopular = () => axiosInstance.get("/movie/popular");
 
-export const getDetail = (movieId) => axiosInstance.get(`/movie/${movieId}`);
+export const getDetail = (id) => axiosInstance.get(`/movie/${id}`);
 
 export const getSimilar = (id) => axiosInstance.get(`/movie/${id}/similar`);
 
