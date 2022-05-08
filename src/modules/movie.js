@@ -13,26 +13,20 @@ const GET_UPCOMING_SUCCESS = "movie/GET_UPCOMING_SUCCESS";
 const GET_NOWPLAYING = "movie/GET_NOWPLAYING";
 const GET_NOWPLAYING_SUCCESS = "movie/GET_NOWPLAYING_SUCCESS";
 
-// const GET_DETAIL = "movie/GET_DETAIL";
-// const GET_DETAIL_SUCCESS = "movie/GET_DETAIL_SUCCESS";
-
 //액션 생성 함수
 export const getLatest = createAction(GET_LATEST);
 export const getUpcoming = createAction(GET_UPCOMING);
 export const getNowPlaying = createAction(GET_NOWPLAYING);
-// export const getDetail = createAction(GET_DETAIL, (id) => id);
 
 //saga함수
 const getLatestSaga = createRequestSaga(GET_LATEST, api.getlatest);
 const getUpcomingSaga = createRequestSaga(GET_UPCOMING, api.getUpcoming);
 const getNowPlayingSaga = createRequestSaga(GET_NOWPLAYING, api.getNowPlaying);
-// const getDetailSaga = createRequestSaga(GET_DETAIL, api.getDetail);
 
 export function* movieSaga() {
   yield takeLatest(GET_LATEST, getLatestSaga);
   yield takeLatest(GET_UPCOMING, getUpcomingSaga);
   yield takeLatest(GET_NOWPLAYING, getNowPlayingSaga);
-  // yield takeLatest(GET_DETAIL, getDetailSaga);
 }
 
 const initialState = {
@@ -56,10 +50,6 @@ const movie = handleActions(
       ...state,
       nowPlaying: action.payload,
     }),
-    // [GET_DETAIL_SUCCESS]: (state, action) => ({
-    //   ...state,
-    //   detail: action.payload,
-    // }),
   },
   initialState
 );

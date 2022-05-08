@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import useSimilarMovie from '../useMovieSimilar';
 
 const Base = styled.section`
   padding: 11px 15px;
@@ -93,6 +92,7 @@ const Card = ({ id, posterPath, title, voteAverage }) => {
 };
 
 const SimilarMovie = ({ similar, loading }) => {
+  console.log(similar);
   return (
     <Base>
       <ContentHeaderWrapper>
@@ -106,6 +106,7 @@ const SimilarMovie = ({ similar, loading }) => {
         ) : (
           similar.results.map((result) => (
             <Card
+              key={result.id}
               id={result.id}
               posterPath={result.poster_path}
               title={result.title}

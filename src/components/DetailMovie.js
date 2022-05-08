@@ -5,15 +5,8 @@ import { FaPen } from "react-icons/fa";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { Rating } from "@mui/material";
 
-import Header from "./Header";
-import Footer from "./Footer";
 import DefaultInfo from "./detail/DefaultInfo";
-// import Similar from "./detail/Similar";
-
-const Base = styled.div`
-  position: relative;
-  background: #f8f8f8;
-`;
+import SimilarMovieContainer from "../containers/SimilarMovieContainer";
 
 const TopInfo = styled.section`
   border-bottom: 1px solid rgb(227, 227, 227);
@@ -312,7 +305,7 @@ const DetailMovie = ({ detail, loading }) => {
                 runtime={detail.runtime}
                 overview={detail.overview}
               />
-              {/* <Similar id={detail.id} /> */}
+              <SimilarMovieContainer />
             </ContentSectionContainer>
           </BottomInfo>
         </>
