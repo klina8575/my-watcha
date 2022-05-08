@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import NowPlayingMovie from "../components/NowPlayingMovie";
 import { getNowPlaying } from "../modules/movie";
+import useApi from "../hooks/useApi";
 
 const NowPlayingMovieContainer = ({ getNowPlaying, nowPlaying, loading }) => {
-  useEffect(() => {
-    const fn = async () => {
-      try {
-        await getNowPlaying();
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fn();
-  }, [getNowPlaying]);
+  useApi(getNowPlaying);
+  // useEffect(() => {
+  //   const fn = async () => {
+  //     try {
+  //       await getNowPlaying();
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+  //   fn();
+  // }, [getNowPlaying]);
   return <NowPlayingMovie nowPlaying={nowPlaying} loading={loading} />;
 };
 

@@ -1,4 +1,4 @@
-import axiosInstance from "./index";
+import axiosInstance from "./axiosInstance";
 
 export const getlatest = () => axiosInstance.get("/movie/latest");
 
@@ -16,9 +16,3 @@ export const getSimilar = (id) => axiosInstance.get(`/movie/${id}/similar`);
 
 export const getSearch = (query) =>
   axiosInstance.get(`/search/movie?query=${query}`);
-
-// export const getPost = (id) =>
-//   axiosInstance.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
-
-// export const getUsers = (id) =>
-//   axiosInstance.get(`https://jsonplaceholder.typicode.com/users`);
