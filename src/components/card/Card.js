@@ -19,6 +19,7 @@ const Base = styled.div`
 const ImageWrapper = styled.div`
   width: 100%;
   height: 300px;
+  text-align: center;
 `;
 
 const Image = styled.img`

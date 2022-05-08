@@ -92,7 +92,6 @@ const Card = ({ id, posterPath, title, voteAverage }) => {
 };
 
 const SimilarMovie = ({ similar, loading }) => {
-  console.log(similar);
   return (
     <Base>
       <ContentHeaderWrapper>

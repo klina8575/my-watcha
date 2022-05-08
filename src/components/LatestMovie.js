@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import Card from "./card/Card";
 
@@ -15,6 +15,17 @@ const Title = styled.h4`
 
 const LatestMovie = ({ latest, loading }) => {
   const getYear = (release_date) => release_date.split("-")[0] || "";
+
+  const poster = useMemo(() => {
+    if (latest) {
+      if (!latest.poster_path) {
+        return `/no_image.png`;
+      } else {
+        return `${process.env.REACT_APP_IMAGE_PREFIX}/${latest.poster_path}`;
+      }
+    }
+  }, [latest]);
+
   return (
     <Base>
       <Title>최근 개봉작</Title>
@@ -26,7 +37,7 @@ const LatestMovie = ({ latest, loading }) => {
             key={latest.id}
             linkUrl={`/movie/${latest.id}`}
             title={latest.title}
-            posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${latest.poster_path}`}
+            posterPath={poster}
             voteAverage={latest.vote_average}
             year={getYear(latest.release_date)}
           />

@@ -192,7 +192,6 @@ const Header = () => {
               </Link>
             </Menu>
             <Menu>
-              {/* <Link href="/"> */}
               <MenuButton
                 className={(navData) =>
                   navData.isActive ? "active" : undefined
@@ -201,10 +200,8 @@ const Header = () => {
               >
                 영화
               </MenuButton>
-              {/* </Link> */}
             </Menu>
             <Menu>
-              {/* <Link href="/tv"> */}
               <MenuButton
                 className={(navData) =>
                   navData.isActive ? "active" : undefined
@@ -213,7 +210,6 @@ const Header = () => {
               >
                 TV 프로그램
               </MenuButton>
-              {/* </Link> */}
             </Menu>
             <SearchMenu>
               <SearchContainer>
