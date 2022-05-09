@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearch } from "../modules/common";
+
 // import useMovieSearch from "../features/movie/useMovieSearch";
 
 const Base = styled.header`
@@ -173,11 +176,27 @@ const SignUp = styled.button`
 `;
 
 const Header = () => {
-  // const [searchKeyword, setSearchKeyword] = useState<string>("");
-  // const handleKeyword = (e) => {
-  //   setSearchKeyword(e.target.value);
-  // };
-  // const { data: searchResult } = useMovieSearch(searchKeyword);
+  // const [searchKeyword, setSearchKeyword] = useState("");
+
+  const search = useSelector((state) => state.common.search);
+  const dispatch = useDispatch();
+
+  const getSearchList = useCallback(
+    (searchKeyword) => {
+      dispatch(getSearch(searchKeyword));
+    },
+    [dispatch]
+  );
+
+  const handleKeyword = (e) => {
+    // setSearchKeyword(e.target.value);
+    getSearchList(e.target.value);
+  };
+
+  if (search) {
+    console.log(search);
+  }
+
   return (
     <Base>
       <Navigation>
@@ -219,7 +238,7 @@ const Header = () => {
                       <AiOutlineSearch />
                       <SearchInput
                         placeholder="콘텐츠, 인물, 컬렉션, 유저를 검색해보세요."
-                        // onChange={handleKeyword}
+                        onChange={handleKeyword}
                       />
                     </SearchLabel>
                   </SearchForm>
