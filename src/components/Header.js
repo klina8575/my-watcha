@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { getSearch } from "../modules/common";
+import { getSearch, getSearchInit } from "../modules/common";
 
 // import useMovieSearch from "../features/movie/useMovieSearch";
 
@@ -178,7 +178,7 @@ const SignUp = styled.button`
 const Header = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
 
-  let search = useSelector((state) => state.common.search);
+  const search = useSelector((state) => state.common.search);
   const dispatch = useDispatch();
 
   const getSearchList = useCallback(
@@ -188,24 +188,24 @@ const Header = () => {
     [dispatch]
   );
 
+  const getSearchInitList = useCallback(
+    (keyword) => {
+      dispatch(getSearchInit());
+    },
+    [dispatch]
+  );
+
   const handleKeyword = (e) => {
-    // if (e.target.value === "") {
-    //   setSearchKeyword("null");
-    // }
     setSearchKeyword(e.target.value);
-    console.log("searchKeyword1: ", searchKeyword);
-    // getSearchList(searchKeyword);
   };
 
   useEffect(() => {
-    getSearchList(searchKeyword);
-  }, [searchKeyword, getSearchList]);
-
-  console.log("searchKeyword2: ", searchKeyword);
-
-  if (search) {
-    console.log(search);
-  }
+    if (searchKeyword) {
+      getSearchList(searchKeyword);
+    } else {
+      getSearchInitList();
+    }
+  }, [searchKeyword, getSearchList, getSearchInitList]);
 
   return (
     <Base>
