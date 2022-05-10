@@ -18,6 +18,7 @@ export function* commonSaga() {
 }
 
 const initialState = {
+  // searchKeyword: "",
   search: null,
 };
 

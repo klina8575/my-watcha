@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -176,22 +176,32 @@ const SignUp = styled.button`
 `;
 
 const Header = () => {
-  // const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
 
-  const search = useSelector((state) => state.common.search);
+  let search = useSelector((state) => state.common.search);
   const dispatch = useDispatch();
 
   const getSearchList = useCallback(
-    (searchKeyword) => {
-      dispatch(getSearch(searchKeyword));
+    (keyword) => {
+      dispatch(getSearch(keyword));
     },
     [dispatch]
   );
 
   const handleKeyword = (e) => {
-    // setSearchKeyword(e.target.value);
-    getSearchList(e.target.value);
+    // if (e.target.value === "") {
+    //   setSearchKeyword("null");
+    // }
+    setSearchKeyword(e.target.value);
+    console.log("searchKeyword1: ", searchKeyword);
+    // getSearchList(searchKeyword);
   };
+
+  useEffect(() => {
+    getSearchList(searchKeyword);
+  }, [searchKeyword, getSearchList]);
+
+  console.log("searchKeyword2: ", searchKeyword);
 
   if (search) {
     console.log(search);
@@ -246,16 +256,17 @@ const Header = () => {
               </SearchContainer>
               <SearchResultWrapper>
                 <SearchResultList>
-                  {/* {searchResult?.results.map((searchResultItem) => (
-                    <Link
-                      href={`/movie/${searchResultItem.id}`}
-                      key={searchResultItem.id}
-                    >
-                      <SearchResultListItem>
-                        {searchResultItem.title}
-                      </SearchResultListItem>
-                    </Link>
-                  ))} */}
+                  {search &&
+                    search.results.map((searchItem) => (
+                      <Link
+                        href={`/movie/${searchItem.id}`}
+                        key={searchItem.id}
+                      >
+                        <SearchResultListItem>
+                          {searchItem.title}
+                        </SearchResultListItem>
+                      </Link>
+                    ))}
                 </SearchResultList>
               </SearchResultWrapper>
             </SearchMenu>
@@ -272,4 +283,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
